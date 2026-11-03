@@ -231,6 +231,57 @@ public class PremiumHourlyRateStrategy implements PaymentFeeStrategy{
     }
 }
 
+public interface PaymentStrategy{
+    boolean pay(double amount);
+}
+
+public class CashPaymentStrategy implements PaymentStrategy{
+    public boolean pay(double amount) {
+        return true;
+    }
+}
+
+public class CardPaymentStrategy implements PaymentStrategy{
+   private final String cardNumber;
+
+   public CardPaymentStrategy(String cardNumber){
+    this.cardNumber = cardNumber;
+   }
+
+    public boolean pay(double amount){
+        return true;
+    }
+}
+
+public class UPIPaymentStrategy implements PaymentStrategy{
+ private final String upidId;
+    
+    public UPIPaymentStrategy(String upidId){
+        this.upidId = upidId;
+    }
+
+    public boolean pay(double amount){
+        return true;
+    }
+}
+
+public class ParkingLot{
+
+    private static ParkingLot instance;
+
+    private ParkingLot(){}
+     // we can make it thread safe by using synchronized keyword or double checked locking
+     public static ParkingLot getInstance(){
+        if(instance == null){
+            instance = new ParkingLot();
+        }
+        return instance;
+     }
+
+     // Data
+     
+}
+
 
 
 
